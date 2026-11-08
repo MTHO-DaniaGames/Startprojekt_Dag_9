@@ -24,7 +24,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 
 Svar `Y`, hvis PowerShell spørger om bekræftelse. `Set-ExecutionPolicy` ændrer reglerne for scriptkørsel. `-Scope Process` betyder kun denne terminal, indtil den lukkes. `RemoteSigned` tillader lokale scripts; scripts markeret som hentet fra internettet kræver normalt en signatur. Kommandoen kræver ikke administratorrettigheder.
 
-Hvis der i stedet står, at filen ikke er digitalt signeret, eller at en skolepolitik blokerer ændringen, skal I få hjælp fra underviser/IT. Denne kommando tilsidesætter ikke skolens politik.
+Hvis scriptet stadig bliver blokeret, så sig til, så kigger vi på det sammen.
 
 Når scriptet lykkes, fortsætter I med:
 
