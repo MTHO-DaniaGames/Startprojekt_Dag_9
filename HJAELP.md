@@ -13,6 +13,30 @@
 - **Ny bog mangler på første side:** Listen er sorteret efter id. Brug Næste eller hent med det faktiske id fra oprettelsen. Et named volume bevarer tidligere testdata, så næste id er ikke altid 7.
 - **Log ud:** Web fjerner sit token og sin viste liste. Det tilbagekalder ikke et token, der er kopieret til en anden client. Genindlæsning kræver nyt login.
 
+## Hvis PowerShell blokerer scriptet
+
+Hvis fejlen siger `running scripts is disabled on this system`, køres disse to linjer i samme terminal, én ad gangen:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
+.\Forbered-HTTPS.ps1
+```
+
+Svar `Y`, hvis PowerShell spørger om bekræftelse. `Set-ExecutionPolicy` ændrer reglerne for scriptkørsel. `-Scope Process` betyder kun denne terminal, indtil den lukkes. `RemoteSigned` tillader lokale scripts; scripts markeret som hentet fra internettet kræver normalt en signatur. Kommandoen kræver ikke administratorrettigheder.
+
+Hvis der i stedet står, at filen ikke er digitalt signeret, eller at en skolepolitik blokerer ændringen, skal I få hjælp fra underviser/IT. Denne kommando tilsidesætter ikke skolens politik.
+
+Når scriptet lykkes, fortsætter I med:
+
+```powershell
+dotnet dev-certs https --trust
+docker compose up -d --build
+```
+
+Godkend Windows-dialogen om udviklingscertifikatet, hvis den vises. Kontrollér derefter `https://localhost:5443/health` (status ok) og `https://localhost:5143` (loginformular).
+
+Kilde: [Microsoft: Set-ExecutionPolicy](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-5.1).
+
 ## Status og logs
 
 `docker compose ps -a` viser containernes status. ps kommer fra process status. -a medtager også stoppede containere.
