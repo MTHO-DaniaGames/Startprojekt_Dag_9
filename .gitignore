@@ -1,0 +1,9 @@
+**/bin/
+**/obj/
+.vs/
+**/App_Data/
+.env
+.certs/
+*.pfx
+*.user
+*.private.http
